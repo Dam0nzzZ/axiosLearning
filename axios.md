@@ -9,7 +9,7 @@
 1. 安装 json server
 
 ```cmd
->> npm install-g json-server
+>> npm install -g json-server
 ```
 
 2. 创建`db.json`虚拟服务器
@@ -116,6 +116,8 @@ header:请求头信息配置
 
 ```js
 // Add a request interceptor
+//config:配置对象
+//可在拦截器中修改请求对象中的信息
 axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
@@ -128,6 +130,7 @@ axios.interceptors.request.use(
 );
 
 // Add a response interceptor
+//response:axios默认回复对象
 axios.interceptors.response.use(
   function (response) {
     // Any status code that lie within the range of 2xx cause this function to trigger
@@ -141,3 +144,5 @@ axios.interceptors.response.use(
   }
 );
 ```
+
+- 注意有多个请求/响应拦截器时，请求拦截器以堆栈形式存储（后进先出），响应拦截器以队列形式（先进先出）存储
